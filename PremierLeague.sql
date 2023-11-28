@@ -165,4 +165,57 @@ FROM Matches
 GROUP BY Season_End_Year
 ORDER BY Season_End_Year DESC
 
--- Are there any trends in the number of draws or wins over seasons?
+-- Which season had the highest number of total goals scored?
+SELECT TOP 1 Season_End_Year AS Season, SUM(HomeGoals+AwayGoals) AS Goals
+FROM Matches
+GROUP BY Season_End_Year
+ORDER BY Goals DESC
+
+-- MATCHWEEK ANALYSIS
+
+-- Are there particular match weeks where more goals are typically scored?
+SELECT TOP 5 Wk AS Week, SUM(HomeGoals+AwayGoals) AS Goals
+FROM Matches
+GROUP BY Wk
+ORDER BY Goals DESC
+
+-- The last week, week 38, is historically the week with most goals each season
+
+-- Are there particular match weeks with more Draws?
+SELECT TOP 5 Wk AS Week, COUNT(CASE WHEN FTR = 'D' THEN 1 END) AS Draws
+FROM Matches
+GROUP BY Wk
+ORDER BY Draws DESC
+
+-- Week 23, right around the middle of the season, exhibits the highest amount of Draws historically
+
+-- SPECIFIC MATCH ANALYSIS
+
+-- What was the highest-scoring match in terms of total goals?
+SELECT TOP 1
+    Season_End_Year AS Season,
+    Wk AS Week,
+    Date,
+    Home,
+    HomeGoals AS Goals,
+    Away,
+    AwayGoals AS Goals
+FROM Matches
+ORDER BY HomeGoals+AwayGoals DESC
+
+-- What was the match with the highest score difference?
+SELECT TOP 1
+    Season_End_Year AS Season,
+    Wk AS Week,
+    Date,
+    Home,
+    HomeGoals AS Goals,
+    Away,
+    AwayGoals AS Goals
+FROM Matches
+ORDER BY ABS(HomeGoals-AwayGoals) DESC
+
+
+
+
+
