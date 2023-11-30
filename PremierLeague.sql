@@ -139,9 +139,7 @@ GROUP BY
 ORDER BY 'Match Result';
 
 -- As expected there is a positive correlation between a home win and goals scored
-
-
-vscogit  
+ 
 -- SEASONAL TRENDS AND COMPARISON
 
 -- How are the different match results (Home Wins, Draws, Away Wins) distributed across different seasons?
